@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Positions</h1>
+    <ul>
+    {% for position in positions_list %}
+        <li>{{ position.name }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

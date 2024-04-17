@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Task Info <a style="float: right;" href="{% url 'manager:task-update' task.id %}">Update status</a></h1>
+  <h2>{{ task.name }}</h2>
+  <p>
+    <strong>Description:</strong> {{ task.description }}
+  </p>
+  <p>
+    <strong>Deadline:</strong> {{ task.deadline }}
+  </p>
+  <p>
+    <strong>Status:</strong> {% if task.is_completed %}
+       Completed
+    {% else %}
+      Not Completed
+    {% endif %}
+  </p>
+  <p>
+    <strong>Priority:</strong> {{ task.get_priority_display }}
+  </p>
+  <p>
+    <strong>Task Type:</strong> {{ task.task_type }}
+  </p>
+  <p>
+    <strong>Assignees:</strong> {% for assignee in task.assignees.all %}
+      {{ assignee }}
+    {% endfor %}
+  </p>
+{% endblock %}

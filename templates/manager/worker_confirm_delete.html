@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>Are you Sure you want to <strong>DELETE</strong> worker: <strong>{{ worker }}</strong>?</p>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Yes, DELETE" />
+    <button type="button" class="btn btn-primary" onclick="window.location.href='{{ worker.get_absolute_url }}';">No, return</button>
+  </form>
+{% endblock %}

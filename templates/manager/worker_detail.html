@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+        Worker: {{ worker.get_full_name }}
+        <a href="{% url 'manager:worker-update' worker.id %}" class="btn btn-secondary">Update</a>
+        <a href="{% url 'manager:worker-delete' worker.id %}" class="btn btn-danger">Delete</a>
+    </h1>
+
+    <p><strong>({{ worker.position }})</strong></p>
+
+    <h2>Tasks Assigned to {{ worker.get_full_name }}</h2>
+    <ul>
+    {% for task in worker.tasks.all %}
+        <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
