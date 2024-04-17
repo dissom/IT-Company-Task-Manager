@@ -12,12 +12,21 @@ class TaskType(models.Model):
 class Position(models.Model):
     name = models.CharField(max_length=63)
 
+    class Meta:
+        verbose_name = "position"
+        verbose_name_plural = "positions"
+
     def __str__(self):
         return self.name
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE)
+    position = models.ForeignKey(
+        Position,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = "worker"
@@ -42,3 +51,6 @@ class Task(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker, related_name="tasks")
+
+    def __str__(self):
+        return f"{self.name} ({self.get_priority_display()})"
