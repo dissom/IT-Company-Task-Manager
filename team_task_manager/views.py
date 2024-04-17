@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from team_task_manager.models import (
-    Task,
-    TaskType,
-    Worker
-)
+from django.urls import reverse_lazy
+from django.views import generic
+from team_task_manager.forms import TaskForm, TaskStatusUpdate, WorkerForm
+from team_task_manager.models import Task, TaskType, Worker, Position
 
 
 @login_required
@@ -15,15 +14,86 @@ def index(request) -> HttpResponse:
     num_workers = Worker.objects.count()
     num_tasks = Task.objects.count()
     num_task_types = TaskType.objects.count()
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+    print(num_visits)
 
     context = {
         "num_workers": num_workers,
         "num_tasks": num_tasks,
-        "num_task_types": num_task_types
+        "num_task_types": num_task_types,
+        "num_visits": num_visits,
     }
 
-    return render(
-        request,
-        template_name="manager/index.html",
-        context=context
-    )
+    return render(request, template_name="manager/index.html", context=context)
+
+
+class WorkerListView(generic.ListView):
+    model = Worker
+    queryset = Worker.objects.prefetch_related("tasks")
+    template_name = "manager/worker_list.html"
+    context_object_name = "workers_list"
+
+
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    template_name = "manager/worker_form.html"
+    form_class = WorkerForm
+    success_url = reverse_lazy("manager:workers-list")
+
+
+class WorkerUpdateView(generic.UpdateView):
+    model = Worker
+    template_name = "manager/worker_form.html"
+    form_class = WorkerForm
+    success_url = reverse_lazy("manager:workers-list")
+
+
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    template_name = "manager/worker_confirm_delete.html"
+    success_url = reverse_lazy("manager:workers-list")
+
+
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+    template_name = "manager/worker_detail.html"
+    context_object_name = "worker"
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    template_name = "manager/tasks_list.html"
+    context_object_name = "tasks_list"
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    template_name = "manager/task_form.html"
+    form_class = TaskForm
+    success_url = reverse_lazy("manager:tasks-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    template_name = "manager/task_confirm_delete.html"
+    success_url = reverse_lazy("manager:tasks-list")
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskStatusUpdate
+    template_name = "manager/task_form.html"
+    context_object_name = "task_update"
+    success_url = reverse_lazy("manager:tasks-list")
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task
+    template_name = "manager/task_detail.html"
+
+
+class PositionListView(generic.ListView):
+    model = Position
+    template_name = "manager/positions_list.html"
+    context_object_name = "positions_list"
