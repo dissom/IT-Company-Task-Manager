@@ -9,10 +9,25 @@
 
     <p><strong>({{ worker.position }})</strong></p>
 
-    <h2>Tasks Assigned to {{ worker.get_full_name }}</h2>
+    <h2>Completed Tasks</h2>
     <ul>
-    {% for task in worker.tasks.all %}
-        <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></li>
-    {% endfor %}
+    {% if completed_tasks %}
+        {% for task in completed_tasks %}
+            <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li>No completed tasks.</li>
+    {% endif %}
+    </ul>
+
+    <h2>Not Completed Tasks</h2>
+    <ul>
+    {% if not_completed_tasks %}
+        {% for task in not_completed_tasks %}
+            <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li>No not completed tasks.</li>
+    {% endif %}
     </ul>
 {% endblock content %}

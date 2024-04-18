@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>
-    Tasks: <a style="float: right;" href="{% url 'manager:task-create' %}">Create Task</a>
-</h1>
+  <h1>Tasks: <a style="float: right;" href="{% url 'manager:task-create' %}">Create Task</a></h1>
   {% if tasks_list %}
     <table class="table">
       <tr>
         <th>Name</th>
         <th>Type</th>
         <th>Deadline</th>
+        <th>Tags</th>
       </tr>
       {% for task in tasks_list %}
         <tr>
-          <td> <a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
+          <td>
+            <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+          </td>
           <td>{{ task.task_type }}</td>
           <td>{{ task.deadline }}</td>
+          <td>
+            {% for tag in task.tags.all %}
+              {{ tag.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
         </tr>
       {% endfor %}
     </table>
-    {% else %}
+  {% else %}
     <p>No tasks.</p>
   {% endif %}
 {% endblock %}

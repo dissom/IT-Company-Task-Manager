@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from team_task_manager.models import Worker, Task
+from team_task_manager.models import Tag, Worker, Task
 
 
 class WorkerForm(UserCreationForm):
@@ -21,6 +21,11 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+    # tags = forms.ModelChoiceField(
+    #     queryset=Tag.objects.all(),
+    #     widget=forms.TextInput,
+    #     required=False
+    # )
 
     class Meta:
         model = Task

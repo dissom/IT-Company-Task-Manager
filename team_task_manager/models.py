@@ -3,6 +3,17 @@ from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 
 
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class TaskType(models.Model):
     name = models.CharField(max_length=63)
 
@@ -55,6 +66,12 @@ class Task(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker, related_name="tasks")
+    tags = models.ManyToManyField(
+        Tag,
+        related_name="tasks",
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.name} ({self.get_priority_display()})"
