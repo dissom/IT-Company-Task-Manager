@@ -8,4 +8,15 @@
         {{ form|crispy }}
         <input class="btn btn-primary" type="submit" value="Create">
     </form>
+    <br>
+    {% comment %} <form action="{% url 'manager:tag-create' %}" method="POST">
+        {% csrf_token %}
+
+        {{ tag_form|crispy }}
+
+        <input type="hidden" name="task_id" value="{{ task.id }}">
+        <label for="id_name">New Tag:</label>
+        <input type="text" id="id_name" name="name">
+        <input class="btn btn-primary" type="submit" value="New Tag">
+    </form> {% endcomment %}
 {% endblock content %}
