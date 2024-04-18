@@ -6,8 +6,7 @@ from django.urls import reverse
 class Tag(models.Model):
     name = models.CharField(
         max_length=20,
-        blank=True,
-        null=True
+        unique=True
     )
 
     def __str__(self):
@@ -69,8 +68,7 @@ class Task(models.Model):
     tags = models.ManyToManyField(
         Tag,
         related_name="tasks",
-        null=True,
-        blank=True
+        blank=False
     )
 
     def __str__(self):

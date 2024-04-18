@@ -1,11 +1,13 @@
 from django.urls import path
 from team_task_manager.views import (
-    TaskDeleteView,
-    TaskDetailView,
-    TaskUpdateView,
     index,
+    TagCreateView,
     TaskListView,
     TaskCreateView,
+    TaskDetailView,
+    TaskDeleteView,
+    TaskUpdateView,
+    TaskStatusUpdateView,
     WorkerListView,
     WorkerCreateView,
     WorkerUpdateView,
@@ -58,6 +60,11 @@ urlpatterns = [
         name="task-update"
     ),
     path(
+        "task/<int:pk>/update-status/",
+        TaskStatusUpdateView.as_view(),
+        name="task-status-update"
+    ),
+    path(
         "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete"
@@ -71,6 +78,11 @@ urlpatterns = [
         "positions/",
         PositionListView.as_view(),
         name="positions-list"
+    ),
+    path(
+        "tag/create/",
+        TagCreateView.as_view(),
+        name="tag-create"
     ),
 ]
 

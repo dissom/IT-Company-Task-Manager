@@ -16,23 +16,38 @@ class WorkerForm(UserCreationForm):
 
 
 class TaskForm(forms.ModelForm):
+
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
         required=False
     )
-    # tags = forms.ModelChoiceField(
-    #     queryset=Tag.objects.all(),
-    #     widget=forms.TextInput,
-    #     required=False
-    # )
 
     class Meta:
         model = Task
         fields = "__all__"
 
 
-class TaskStatusUpdate(forms.ModelForm):
-    class Meta:
-        model = Task
-        fields = ("is_completed",)
+class WorkerSearchForm(forms.Form):
+
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
+    )
+
+
+class TagSearchForm(forms.Form):
+
+    tag = forms.CharField(
+        max_length=255,
+        required=True,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by tag"}),
+    )
