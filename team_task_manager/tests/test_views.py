@@ -19,7 +19,7 @@ class TestsForPublicRequired(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
     def test_workers_list(self) -> None:
-        response =self.client.get(WORKERS_LIST)
+        response = self.client.get(WORKERS_LIST)
         self.assertNotEqual(response.status_code, 200)
 
     def test_tasks_list(self):
@@ -45,7 +45,7 @@ class TestsForPrivateRequired(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_workers_list(self) -> None:
-        response =self.client.get(WORKERS_LIST)
+        response = self.client.get(WORKERS_LIST)
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(
@@ -54,7 +54,7 @@ class TestsForPrivateRequired(TestCase):
         )
 
     def test_tasks_list(self):
-        response =self.client.get(TASKS_LIST)
+        response = self.client.get(TASKS_LIST)
         task_type = TaskType.objects.create(name="refactoring")
         Task.objects.create(
             name="TestTask",
@@ -76,10 +76,6 @@ class TestsForPrivateRequired(TestCase):
             list(response.context["tasks_list"]),
             list(tasks)
         )
-
-    def test_tasks_list(self):
-        response = self.client.get(TASKS_LIST)
-        self.assertEqual(response.status_code, 200)
 
     def test_positions_list(self):
         response = self.client.get(POSITIONS_LIST)

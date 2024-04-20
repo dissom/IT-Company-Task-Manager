@@ -7,12 +7,13 @@ from datetime import date
 
 
 class WorkerTests(TestCase):
-    username="TestWorker"
+    username = "TestWorker"
     first_name = "Test"
     last_name = "Worker"
-    password="worker123"
-    position="QA"
-    def setUp(self):
+    password = "worker123"
+    position = "QA"
+
+    def setUp(self) -> None:
         self.position = Position.objects.create(name=self.position)
         self.worker = get_user_model().objects.create_user(
             username=self.username,
@@ -42,6 +43,7 @@ class PositionTests(TestCase):
             str(position),
             position.name
         )
+
 
 class TaskTests(TestCase):
     def setUp(self) -> None:
