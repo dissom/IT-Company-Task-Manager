@@ -12,9 +12,14 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <form action="" method="POST" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input class="btn btn-primary" type="submit" value="Create" />
-  </form>
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Create" />
+      </form>
+    </div>
+  </section>
 {% endblock %}
