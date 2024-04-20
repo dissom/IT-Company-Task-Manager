@@ -1,22 +1,26 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-    <h1>{{ object|yesno:"Update,Create" }} a Task</h1>
-    <form action="" method="POST" novalidate>
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <h1>{{ object|yesno:'Update,Create' }} a Task</h1>
+      <form action="" method="POST" novalidate>
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="btn btn-primary" type="submit" value="Create">
-    </form>
-    <br>
-    {% comment %} <form action="{% url 'manager:tag-create' %}" method="POST">
-        {% csrf_token %}
-
-        {{ tag_form|crispy }}
-
-        <input type="hidden" name="task_id" value="{{ task.id }}">
-        <label for="id_name">New Tag:</label>
-        <input type="text" id="id_name" name="name">
-        <input class="btn btn-primary" type="submit" value="New Tag">
-    </form> {% endcomment %}
-{% endblock content %}
+        <input class="btn btn-primary" type="submit" value="Create" />
+      </form>
+      <br />
+    </div>
+  </section>
+{% endblock %}

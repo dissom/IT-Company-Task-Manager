@@ -1,6 +1,13 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
 
+{% block title %} Material Kit 2 by Creative Tim {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
 {% block content %}
+<section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+        <br><br><br>
     <h1>
         Worker: {{ worker.get_full_name }}
         <a href="{% url 'manager:worker-update' worker.id %}" class="btn btn-secondary">Update</a>
@@ -30,4 +37,7 @@
         <li>No not completed tasks.</li>
     {% endif %}
     </ul>
+    </div>
+</section>
+
 {% endblock content %}

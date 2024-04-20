@@ -1,10 +1,24 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
 
 {% block content %}
-    <h1>Positions</h1>
-    <ul>
-    {% for position in positions_list %}
-        <li>{{ position.name }}</li>
-    {% endfor %}
-    </ul>
-{% endblock content %}
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <h1>Positions</h1>
+      <ul>
+        {% for position in positions_list %}
+          <li>{{ position.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}

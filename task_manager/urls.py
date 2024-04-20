@@ -22,7 +22,7 @@ from task_manager import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("manager/", include("team_task_manager.urls", namespace="manager")),
+    path("", include("team_task_manager.urls", namespace="manager")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

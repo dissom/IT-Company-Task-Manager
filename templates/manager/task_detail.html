@@ -1,41 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Task Info
-    <a style="float: right;" href="{% url 'manager:task-update' task.id %}">Update Task</a>
-  </h1>
-  <form action="{% url 'manager:task-status-update' task.pk %}" method="post">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-primary" value="Change Status" />
-  </form>
-  <h2>{{ task.name }}</h2>
-  <p>
-    <strong>Description:</strong> {{ task.description }}
-  </p>
-  <p>
-    <strong>Deadline:</strong> {{ task.deadline }}
-  </p>
-  <p>
-    <strong>Status:</strong> {% if task.is_completed %}
-      Completed
-    {% else %}
-      Not Completed
-    {% endif %}
-  </p>
-  <p>
-    <strong>Priority:</strong> {{ task.get_priority_display }}
-  </p>
-  <p>
-    <strong>Task Type:</strong> {{ task.task_type }}
-  </p>
-  <p>
-    <strong>Assignees:</strong>
-    <ul>
-      {% for worker in task.assignees.all %}
-        <li><a href="{{ worker.get_absolute_url }}">{{ worker }}</a></li>
-      {% endfor %}
-    </ul>
-   </p>
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <h1>
+        Task Info
+        <a style="float: right;" href="{% url 'manager:task-update' task.id %}">Update Task</a>
+      </h1>
+      <form action="{% url 'manager:task-status-update' task.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Change Status" />
+      </form>
+      <h2>{{ task.name }}</h2>
+      <p>
+        <strong>Description:</strong> {{ task.description }}
+      </p>
+      <p>
+        <strong>Deadline:</strong> {{ task.deadline }}
+      </p>
+      <p>
+        <strong>Status:</strong> {% if task.is_completed %}
+          Completed
+        {% else %}
+          Not Completed
+        {% endif %}
+      </p>
+      <p>
+        <strong>Priority:</strong> {{ task.get_priority_display }}
+      </p>
+      <p>
+        <strong>Task Type:</strong> {{ task.task_type }}
+      </p>
+      <p>
+        <strong>Assignees:</strong>
+        <ul>
+          {% for worker in task.assignees.all %}
+            <li>
+              <a href="{{ worker.get_absolute_url }}">{{ worker }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </p>
+    </div>
+  </section>
 {% endblock %}

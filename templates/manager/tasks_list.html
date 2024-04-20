@@ -1,37 +1,51 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Tasks: <a style="float: right;" href="{% url 'manager:task-create' %}">Create Task</a></h1>
-  <form action="" method="GET" class="form-inline" name="">
-    {{ search_form|crispy }}
-    <input class="btn btn-secondary" type="submit" value="🔎" />
-  </form>
-  {% if tasks_list %}
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Deadline</th>
-        <th>Tags</th>
-      </tr>
-      <h2><a href="{% url 'manager:tag-create' %}">Create a Tag</a></h2>
-      {% for task in tasks_list %}
-        <tr>
-          <td>
-            <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
-          </td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.deadline }}</td>
-          <td>
-            {% for tag in task.tags.all %}
-              {{ tag.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
-  {% else %}
-    <p>No tasks.</p>
-  {% endif %}
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <h1>Tasks: <a style="float: right;" href="{% url 'manager:task-create' %}">Create Task</a></h1>
+      <form action="" method="GET" class="form-inline" name="">
+        {{ search_form|crispy }}
+        <input class="btn btn-secondary" type="submit" value="🔎" />
+      </form>
+      {% if tasks_list %}
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Deadline</th>
+            <th>Tags</th>
+          </tr>
+          <h2><a href="{% url 'manager:tag-create' %}">Create a Tag</a></h2>
+          {% for task in tasks_list %}
+            <tr>
+              <td>
+                <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+              </td>
+              <td>{{ task.task_type }}</td>
+              <td>{{ task.deadline }}</td>
+              <td>
+                {% for tag in task.tags.all %}
+                  {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No tasks.</p>
+      {% endif %}
+    </div>
+  </section>
 {% endblock %}
