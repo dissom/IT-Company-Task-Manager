@@ -6,11 +6,9 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import View, generic
 from team_task_manager.forms import (
-    # TagForm,
-    TagSearchForm,
     TaskForm,
-    # TaskStatusUpdate,
     WorkerForm,
+    TagSearchForm,
     WorkerSearchForm
 )
 from team_task_manager.models import Tag, Task, TaskType, Worker, Position

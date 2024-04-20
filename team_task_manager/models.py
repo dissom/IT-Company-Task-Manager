@@ -9,14 +9,14 @@ class Tag(models.Model):
         unique=True
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class TaskType(models.Model):
     name = models.CharField(max_length=63)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -27,7 +27,7 @@ class Position(models.Model):
         verbose_name = "position"
         verbose_name_plural = "positions"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -43,10 +43,10 @@ class Worker(AbstractUser):
         verbose_name = "worker"
         verbose_name_plural = "workers"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("manager:worker-detail", kwargs={"pk": self.pk})
 
 
@@ -71,8 +71,8 @@ class Task(models.Model):
         blank=False
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name} ({self.get_priority_display()})"
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("manager:task-detail", kwargs={"pk": self.pk})
