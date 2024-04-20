@@ -116,9 +116,12 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         queryset = Task.objects.all()
         form = TagSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(
-                tags__name__icontains=form.cleaned_data["tag"]
-            )
+            tag = form.cleaned_data["tag"]
+            if tag:
+                return queryset.filter(
+                    tags__name__icontains=form.cleaned_data["tag"]
+                )
+            Task.objects.none()
 
         return queryset
 

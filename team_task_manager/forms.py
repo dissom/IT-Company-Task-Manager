@@ -47,7 +47,7 @@ class TagSearchForm(forms.Form):
 
     tag = forms.CharField(
         max_length=255,
-        required=True,
+        required=False,
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by tag"}),
     )
