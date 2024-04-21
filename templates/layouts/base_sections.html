@@ -49,7 +49,11 @@
   {% endblock header %}
 
   {% block content %}{% endblock content %}
-  {% block pagination %}{% include 'includes/pagination.html' %}{% endblock %}
+  {% block pagination %}
+    <div class="pagination-container">
+        {% include 'includes/pagination.html' %}
+    </div>
+   {% endblock %}
 
   {% block footer %}
 
