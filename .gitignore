@@ -3,6 +3,7 @@
 
 ### Django ###
 migrations
+.vscode/
 *.log
 *.pot
 *.pyc

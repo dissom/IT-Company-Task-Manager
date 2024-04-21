@@ -1,8 +1,7 @@
 "# IT-Company-Task-Manager"
 
 
-    Our project is a web application for task management in an IT company.
-
+Our project is a web application for task management in an IT company.
 It provides the ability to create, track, and manage tasks for developers
 and other company employees.
 
