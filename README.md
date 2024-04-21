@@ -14,7 +14,7 @@ Users can create new tasks, set their priorities, assign assignees, and track
 
 Python3 must be already installated
 
-'''
+```shell
 git clone https://github.com/dissom/IT-Company-Task-Manager
 cd IT-Company-Task-Manager
 python3 -m venv venv
@@ -22,7 +22,7 @@ source venv/bin/activate (on macOS)
 venv\Scripts\activate (on Windows)
 pip install -r requirements.txt
 python manage.py runserver
-'''
+```
 
 ## Demo
 
