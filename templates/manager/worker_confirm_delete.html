@@ -1,0 +1,27 @@
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% load static %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
+{% block content %}
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+        <br><br><br>
+      <p>
+        Are you Sure you want to <strong>DELETE</strong> worker: <strong>{{ worker }}</strong>?
+      </p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="Yes, DELETE" />
+        <button type="button" class="btn btn-primary" onclick="window.location.href='{{ worker.get_absolute_url }}';">No, return</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layouts/base_sections.html' %}
+
+{% block content %}
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <p>Logged out!</p>
+
+      <a href="{% url 'login' %}">Click here to login again.</a>
+    </div>
+  </section>
+{% endblock %}

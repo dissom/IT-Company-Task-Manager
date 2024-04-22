@@ -1,0 +1,26 @@
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %}
+  Material Kit 2 by Creative Tim
+{% endblock %}
+
+{% block body %}
+  class="index-page bg-gray-200"
+{% endblock %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <br /><br /><br />
+      <h1>{{ object|yesno:'Update,Create' }} a Task</h1>
+      <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Create" />
+      </form>
+      <br />
+    </div>
+  </section>
+{% endblock %}
