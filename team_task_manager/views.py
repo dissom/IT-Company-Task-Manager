@@ -24,7 +24,6 @@ def index(request) -> HttpResponse:
     num_tags = Tag.objects.count()
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
-    print(num_visits)
 
     context = {
         "num_workers": num_workers,
