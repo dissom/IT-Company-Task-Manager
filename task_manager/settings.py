@@ -14,6 +14,9 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,13 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    default="django-insecure-2z29_do$tv!+&z@piwwgtujxfjfd-puz$@q#h78=%!p#(ly7jl",
-)
-# SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 # DEBUG = True
 # DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
@@ -97,7 +97,6 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-load_dotenv()
 
 DATABASES = {
     "default": {
