@@ -8,6 +8,21 @@ and other company employees.
 Users can create new tasks, set their priorities, assign assignees, and track
  the status of completion.
 
+## Deployment
+
+Information about deployment.
+
+You can view the deployed project [here](https://it-company-task-manager-ro2l.onrender.com).
+
+## Test User
+
+For accessing the admin panel of the website, you can use the following credentials:
+
+- **Username:** testuser
+- **Password:** testpassword123
+
+Please use these credentials for testing or demonstrating the functionality of the admin panel.
+
 
 ## Installation
 
