@@ -9,7 +9,8 @@ from team_task_manager.forms import (
     TaskForm,
     WorkerForm,
     TagSearchForm,
-    WorkerSearchForm
+    WorkerSearchForm,
+    WorkerUpdateForm
 )
 from team_task_manager.models import Tag, Task, TaskType, Worker, Position
 
@@ -40,7 +41,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "workers_list"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self) -> QuerySet:
         queryset = Worker.objects.prefetch_related("tasks")
@@ -70,7 +71,7 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     template_name = "manager/worker_form.html"
-    form_class = WorkerForm
+    form_class = WorkerUpdateForm
     success_url = reverse_lazy("manager:workers-list")
 
 
@@ -107,7 +108,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "manager/tasks_list.html"
     context_object_name = "tasks_list"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self) -> QuerySet:
         queryset = Task.objects.all()
@@ -168,6 +169,13 @@ class TaskStatusUpdateView(LoginRequiredMixin, View):
         return HttpResponseRedirect(
             reverse("manager:task-detail", kwargs={"pk": pk})
         )
+
+
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = ("name",)
+    template_name = "manager/task_type_form.html"
+    success_url = reverse_lazy("manager:tasks-list")
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):

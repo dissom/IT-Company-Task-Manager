@@ -15,8 +15,26 @@ class WorkerForm(UserCreationForm):
         )
 
 
+class WorkerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "position",
+            "email",
+        )
+
+
 class TaskForm(forms.ModelForm):
 
+    deadline = forms.DateTimeField(
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}
+        ),
+        required=True
+    )
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
