@@ -53,8 +53,7 @@ class TestsForPrivateRequired(TestCase):
             list(Worker.objects.all())
         )
 
-    def test_tasks_list(self):
-        response = self.client.get(TASKS_LIST)
+    def test_tasks_list(self) -> None:
         task_type = TaskType.objects.create(name="refactoring")
         Task.objects.create(
             name="TestTask",
@@ -70,6 +69,7 @@ class TestsForPrivateRequired(TestCase):
             is_completed=True,
             task_type=task_type
         )
+        response = self.client.get(TASKS_LIST)
         tasks = Task.objects.all()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
