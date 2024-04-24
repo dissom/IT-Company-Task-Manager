@@ -15,11 +15,11 @@
     <div class="container">
       <br /><br /><br />
       <h1>Tasks: <a style="float: right;" href="{% url 'manager:task-create' %}">Create Task</a></h1>
-      <h2><a style="float: right;" href="{% url 'manager:task-type-create' %}">Create Task Type</a></h2>
       <form action="" method="GET" class="form-inline" name="">
         {{ search_form|crispy }}
         <input class="btn btn-secondary" type="submit" value="🔎" />
       </form>
+      <h2><a href="{% url 'manager:tag-create' %}">Create a Tag</a></h2>
       {% if tasks_list %}
         <table class="table">
           <tr>
@@ -28,7 +28,6 @@
             <th>Deadline</th>
             <th>Tags</th>
           </tr>
-          <h2><a href="{% url 'manager:tag-create' %}">Create a Tag</a></h2>
           {% for task in tasks_list %}
             <tr>
               <td>
