@@ -53,7 +53,7 @@ class TestsForPrivateRequired(TestCase):
             list(Worker.objects.all())
         )
 
-    def test_tasks_list(self):
+    def test_tasks_list(self) -> None:
         task_type = TaskType.objects.create(name="refactoring")
         Task.objects.create(
             name="TestTask",
