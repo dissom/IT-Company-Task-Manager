@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from team_task_manager.models import Tag, Worker, Task
 
@@ -12,6 +12,18 @@ class WorkerForm(UserCreationForm):
             "first_name",
             "last_name",
             "position",
+        )
+
+
+class WorkerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "position",
+            "email",
         )
 
 

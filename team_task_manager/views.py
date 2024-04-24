@@ -9,7 +9,8 @@ from team_task_manager.forms import (
     TaskForm,
     WorkerForm,
     TagSearchForm,
-    WorkerSearchForm
+    WorkerSearchForm,
+    WorkerUpdateForm
 )
 from team_task_manager.models import Tag, Task, TaskType, Worker, Position
 
@@ -70,7 +71,7 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     template_name = "manager/worker_form.html"
-    form_class = WorkerForm
+    form_class = WorkerUpdateForm
     success_url = reverse_lazy("manager:workers-list")
 
 
