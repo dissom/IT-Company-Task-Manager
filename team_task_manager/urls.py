@@ -1,6 +1,7 @@
 from django.urls import path
 from team_task_manager.views import (
     index,
+    TaskTypeCreateView,
     TagCreateView,
     TaskListView,
     TaskCreateView,
@@ -53,6 +54,11 @@ urlpatterns = [
         "tasks/create/",
         TaskCreateView.as_view(),
         name="task-create"
+    ),
+    path(
+        "task-type/create/",
+        TaskTypeCreateView.as_view(),
+        name="task-type-create"
     ),
     path(
         "task/<int:pk>/update/",
