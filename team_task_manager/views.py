@@ -160,7 +160,7 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 class TaskStatusUpdateView(LoginRequiredMixin, View):
     model = Task
 
-    def post(self, request, pk):
+    def post(self, request, pk) -> HttpResponseRedirect:
         task = get_object_or_404(Task, pk=pk)
 
         task.is_completed = not task.is_completed
